@@ -1,0 +1,42 @@
+{
+  "$comment": [
+    "包内示例元数据：只放占位符，不放作者真实路由器清单。",
+    "你自己的调优结果请放在不提交的 ~/.pi/agent/models.json（providers.<id>.models），",
+    "或放到私有文件里并用 ROUTER_MODEL_DEFS=/path/private-models.json 指过来；后者优先于本文件。",
+    "router 上新出现、且没有任何元数据文件声明过的 id，会自动继承同前缀模板，无需在这里补条目。"
+  ],
+  "providerId": "REPLACE_WITH_YOUR_PROVIDER_ID",
+  "baseUrl": "http://your.router.local:3425/v1",
+  "models": [
+    {
+      "$comment": "一级分组就是 id 的第一段前缀，所以命名统一用 <machine>/<model>。",
+      "id": "gpu01/example-local-gguf",
+      "name": "Example Local GGUF",
+      "reasoning": false,
+      "input": ["text"],
+      "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+      "contextWindow": 131072,
+      "maxTokens": 8192
+    },
+    {
+      "id": "gpu01/example-thinking-model",
+      "name": "Example Thinking Model",
+      "reasoning": true,
+      "thinkingLevelMap": { "low": "low", "medium": null, "high": "high", "xhigh": null, "max": "max" },
+      "input": ["text", "image"],
+      "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+      "contextWindow": 262144,
+      "maxTokens": 16384
+    },
+    {
+      "$comment": "router 聚合的上游 API 模型同样按自己的规则命名即可，例如 api01/<upstream-name>。",
+      "id": "api01/example-hosted-model",
+      "name": "Example Hosted Model",
+      "reasoning": true,
+      "input": ["text", "image"],
+      "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+      "contextWindow": 131072,
+      "maxTokens": 16384
+    }
+  ]
+}

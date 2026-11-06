@@ -1,0 +1,27 @@
+{
+  "$schema": "https://pi.dev/schemas/models.schema.json",
+  "$comment": [
+    "复制到 ~/.pi/agent/models.json 后按需修改；apiKey 支持 $ENV 环境变量引用。",
+    "provider id 要和 ROUTER_PROVIDER_ID 保持一致，否则请只保留一个 providers key 让扩展自动识别。"
+  ],
+  "providers": {
+    "REPLACE_WITH_YOUR_PROVIDER_ID": {
+      "name": "My Router",
+      "baseUrl": "http://your.router.local:3425/v1",
+      "api": "openai-completions",
+      "apiKey": "$ROUTER_API_KEY",
+      "models": [
+        {
+          "$comment": "可选：只为需要精确元数据的模型写条目；router 新增 id 会自动继承同前缀模板。",
+          "id": "example/model-name",
+          "name": "Example Model",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 131072,
+          "maxTokens": 16384
+        }
+      ]
+    }
+  }
+}

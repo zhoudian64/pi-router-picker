@@ -1,0 +1,14 @@
+{
+  "name": "@zhoudians/pi-router-picker",
+  "version": "0.1.0",
+  "description": "Live OpenAI-compatible router model discovery + grouped /pick menu for Pi",
+  "keywords": ["pi-package"],
+  "license": "MIT",
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "pi": {
+    "extensions": ["./extensions/router-picker.ts"]
+  }
+}

@@ -1,0 +1,9 @@
+# secrets & machine-local state: never commit these
+models.json
+auth.json
+settings.json
+sessions/
+*.log
+node_modules/
+package-lock.json
+.pi/
