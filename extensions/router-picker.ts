@@ -97,7 +97,14 @@ async function loadConfig(): Promise<boolean> {
   for (const def of (configured?.models ?? [])) {
     if (def?.id) byId.set(def.id, def);
   }
-  seedDefs = [...byId.values()].map((def) => ({ ...def, api: def.api ?? "openai-completions", baseUrl: def.baseUrl ?? baseUrl }));
+  seedDefs = [...byId.values()].map((def) => ({
+    ...def,
+    // Refresh results bypass Pi's models.json defaults. Keep cost usable even
+    // when the router metadata omits pricing or supplies only some rates.
+    cost: { ...FALLBACK_TEMPLATE.cost, ...def.cost },
+    api: def.api ?? "openai-completions",
+    baseUrl: def.baseUrl ?? baseUrl,
+  }));
   liveDefs = [...seedDefs];
   buildGroupsCache(liveDefs);
 
